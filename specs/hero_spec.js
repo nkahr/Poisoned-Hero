@@ -1,6 +1,7 @@
 var assert = require('assert');
 var Hero = require('../hero');
 var Food = require('../food');
+var Rat = require('../rat');
 
 describe('Hero', function(){
   it("has a name and fav food", function(){
@@ -28,5 +29,14 @@ describe('Hero', function(){
     var favFood = new Food("Burrito", 20);
     hero.eatFood(favFood);
     assert.equal(80, hero.health);
-  })
+  });
+
+  it("touched food should damage the hero", function(){
+    var hero = new Hero("Nina", "Burrito");
+    var favFood = new Food("Burrito", 20);
+    var rat = new Rat();
+    rat.touchFood(favFood);
+    hero.eatFood(favFood);
+    assert.equal(70, hero.health);
+  });
 });
